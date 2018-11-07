@@ -23,11 +23,12 @@ export default class BlockList extends Component {
         }
         let latestBlock = []
         web3.eth.getBlock("latest", true).then((res) => {
-        console.log(res)
-        latestBlock = res.transactions.map(transaction => {
-            let value = transaction.value
-            return web3.utils.fromWei(web3.utils.hexToNumberString(value))
-        })
+            console.log(res)
+            latestBlock = res.transactions.filter(transaction => {
+                console.log(Number(transaction.value))
+                return Number(transaction.value) > 0
+            })
+            console.log(latestBlock)
 
         })
         return <Block />
