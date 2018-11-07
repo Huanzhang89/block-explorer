@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import getWeb3 from './api/web3'
 import * as serviceWorker from './serviceWorker';
+
+window.addEventListener('load', async () => {
+    getWeb3().catch(_ => {})
+})
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

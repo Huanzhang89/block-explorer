@@ -7,11 +7,6 @@ import './App.css';
 
 class App extends Component {
 
-  constructor() {
-    super()
-    this.web3 = new Web3(Web3.givenProvider)
-  }
-
   render() {
     return (
       <div className="App">
@@ -19,7 +14,7 @@ class App extends Component {
           <h2>Block Explorer</h2>
         </header>
 
-        <BlockList web3={this.web3}/>
+        <BlockList />
       </div>
     );
   }
