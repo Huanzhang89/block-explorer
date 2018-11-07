@@ -8,6 +8,9 @@ import './App.css';
 class App extends Component {
 
   render() {
+    if (!window.web3) {
+      return 'Please enable Metamask'
+    }
     return (
       <div className="App">
         <header className="App-header">

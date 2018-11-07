@@ -6,7 +6,8 @@ import getWeb3 from './api/web3'
 import * as serviceWorker from './serviceWorker';
 
 window.addEventListener('load', async () => {
-    getWeb3().catch(_ => {})
+    //initiate web3 on window load
+    getWeb3()
 })
 
 ReactDOM.render(<App />, document.getElementById('root'));
