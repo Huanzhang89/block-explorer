@@ -17,7 +17,6 @@ class Provider extends Component {
   }
 
   render() {
-    console.log(this.state.web3)
     return (
       <GlobalContext.Provider
         value={{

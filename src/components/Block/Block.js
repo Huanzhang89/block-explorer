@@ -1,5 +1,5 @@
 const Block = props => {
-    return '123'
+    return props.number
 }
 
 export default Block

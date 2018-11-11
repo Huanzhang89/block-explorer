@@ -1,10 +1,44 @@
 import React, { Component } from 'react';
 
 import BlockList from './components/BlockList'
+import getWeb3 from './api/web3'
+import { GlobalConsumer } from './GlobalState'
 
 import './App.css';
 
 class App extends Component {
+  state = {
+    latestBlocks: []
+  }
+
+  async componentDidMount() {
+    const web3 = await getWeb3()
+    web3.eth.getBlockNumber().then( (res) => {
+      this.getLatestBlocks(res, 10, web3).then(results => {
+        this.setState({
+          latestBlocks: results
+        })
+      })
+    })
+  }
+  getLatestBlocks = async (latest, numOfBlocks, web3) => {
+    const batch = new web3.eth.BatchRequest()
+    const promises = []
+    for (let i = latest; i > latest - numOfBlocks; i -= 1 ) {
+      promises.push(new Promise((resolve, reject) => {
+        batch.add(web3.eth.getBlock.request(i, true, (err, res) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(res)
+          }
+        }))
+      }))
+    }
+    
+    batch.execute()
+    return Promise.all(promises)
+  }
 
   render() {
     if (!window.web3) {
@@ -16,7 +50,16 @@ class App extends Component {
           <h2>Block Explorer</h2>
         </header>
 
-        <BlockList />
+        <GlobalConsumer>
+          {({ web3 }) => {
+            if (!web3) {
+                return 'Loading'
+            }
+            
+            return <BlockList blocks={this.state.latestBlocks} />    
+          }}
+        </GlobalConsumer>
+        
       </div>
     );
   }
