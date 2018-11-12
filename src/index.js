@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import getWeb3 from './api/web3'
 import Provider from './GlobalState'
+import Error from './components/Error'
 import * as serviceWorker from './serviceWorker';
 
 window.addEventListener('load', async () => {
@@ -11,14 +12,9 @@ window.addEventListener('load', async () => {
     getWeb3()
 })
 
-const MetaMaskWarning = () => (
-  <div className="metamask-warning">
-    Please Enable Metamask to Use this Dapp
-  </div>
-)
 if (!window.web3) {
   ReactDOM.render(
-    <MetaMaskWarning />,
+    <Error msg='Please enable Metamask to use this app' />,
     document.getElementById('root')  
   )
 } else {
