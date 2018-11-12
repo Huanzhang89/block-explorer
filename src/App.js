@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { AragonApp } from '@aragon/ui'
 import BlockList from './components/BlockList'
 import getWeb3 from './api/web3'
 import { GlobalConsumer } from './GlobalState'
@@ -18,6 +19,8 @@ class App extends Component {
         this.setState({
           latestBlocks: results
         })
+      }).catch( err => {
+        console.log(err)
       })
     })
   }
@@ -45,22 +48,24 @@ class App extends Component {
       return 'Please enable Metamask'
     }
     return (
-      <div className="App">
-        <header className="App-header">
-          <h2>Block Explorer</h2>
-        </header>
+      <AragonApp publicUrl="/aragon-ui-assets/">
+        <div className="App">
+          <header className="App-header">
+            <h2>Block Explorer</h2>
+          </header>
 
-        <GlobalConsumer>
-          {({ web3 }) => {
-            if (!web3) {
-                return 'Loading'
-            }
-            
-            return <BlockList blocks={this.state.latestBlocks} />    
-          }}
-        </GlobalConsumer>
-        
-      </div>
+          <GlobalConsumer>
+            {({ web3 }) => {
+              if (!web3) {
+                  return 'Loading'
+              }
+              
+              return <BlockList blocks={this.state.latestBlocks} />    
+            }}
+          </GlobalConsumer>
+          
+        </div>
+      </AragonApp>
     );
   }
 }
