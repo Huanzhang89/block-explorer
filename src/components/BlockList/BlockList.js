@@ -5,9 +5,11 @@ import Loader from 'react-loader'
 import Block from '../Block'
 
 const BlockList = ({blocks}) => {
+  if (!blocks.length > 0) {
+    return <Loader loaded={false}/>
+  }
   return (
     <>
-    <Loader loaded={blocks.length > 0}>
       <Table
         header={
           <TableRow>
@@ -29,12 +31,10 @@ const BlockList = ({blocks}) => {
             <Text>No. of Tx</Text>
           </TableCell>
         </TableRow>
-        {console.log(blocks[0])}
         {blocks.map(block => (
           <Block key={block.number} data={block} />
         ))}
       </Table>
-    </Loader>
       
     </>
   )

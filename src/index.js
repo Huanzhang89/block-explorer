@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import getWeb3 from './api/web3'
-import Provider from './GlobalState'
 import Error from './components/Error'
 import * as serviceWorker from './serviceWorker';
 
@@ -19,9 +18,7 @@ if (!window.web3) {
   )
 } else {
   ReactDOM.render(
-    <Provider>
-      <App />
-    </Provider>, 
+    <App />,
     document.getElementById('root')
   )
 }
