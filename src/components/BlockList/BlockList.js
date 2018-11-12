@@ -1,13 +1,13 @@
 import React from 'react'
 import { Table, TableHeader, TableRow, TableCell, Text } from '@aragon/ui'
+import Loader from 'react-loader'
+
 import Block from '../Block'
 
 const BlockList = ({blocks}) => {
-  if (!blocks.length > 0) {
-    return 'Loading...'
-  }
   return (
     <>
+    <Loader loaded={blocks.length > 0}>
       <Table
         header={
           <TableRow>
@@ -15,7 +15,7 @@ const BlockList = ({blocks}) => {
           </TableRow>
         }
       >
-        <TableRow>
+        <TableRow className="table-row">
           <TableCell>
             <Text>Block Number</Text>
           </TableCell>
@@ -34,6 +34,8 @@ const BlockList = ({blocks}) => {
           <Block key={block.number} data={block} />
         ))}
       </Table>
+    </Loader>
+      
     </>
   )
 }

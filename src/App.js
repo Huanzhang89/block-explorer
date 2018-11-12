@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
 import { AragonApp } from '@aragon/ui'
+import Loader from 'react-loader'
+
 import BlockList from './components/BlockList'
 import getWeb3 from './api/web3'
 import { GlobalConsumer } from './GlobalState'
@@ -54,9 +55,8 @@ class App extends Component {
           <GlobalConsumer>
             {({ web3 }) => {
               if (!web3) {
-                  return 'Loading'
+                  return <Loader loaded='false'/>
               }
-              
               return <BlockList blocks={this.state.latestBlocks} />    
             }}
           </GlobalConsumer>
