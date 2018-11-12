@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, TableHeader, TableRow, TableCell, Text } from '@aragon/ui'
 import Loader from 'react-loader'
+import styled from 'styled-components'
 
 import Block from '../Block'
 
@@ -17,7 +18,7 @@ const BlockList = ({blocks}) => {
           </TableRow>
         }
       >
-        <TableRow className="table-row">
+        <StyledTableRow>
           <TableCell>
             <Text>Block Number</Text>
           </TableCell>
@@ -30,7 +31,7 @@ const BlockList = ({blocks}) => {
           <TableCell>
             <Text>No. of Tx</Text>
           </TableCell>
-        </TableRow>
+        </StyledTableRow>
         {blocks.map(block => (
           <Block key={block.number} data={block} />
         ))}
@@ -40,5 +41,8 @@ const BlockList = ({blocks}) => {
   )
 }
   
+const StyledTableRow = styled(TableRow)`
+  font-weight: bold;
+`
 
 export default BlockList
