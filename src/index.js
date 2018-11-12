@@ -11,12 +11,26 @@ window.addEventListener('load', async () => {
     getWeb3()
 })
 
-ReactDOM.render(
-  <Provider>
-    <App />
-  </Provider>, 
-  document.getElementById('root')
-);
+const MetaMaskWarning = () => (
+  <div className="metamask-warning">
+    Please Enable Metamask to Use this Dapp
+  </div>
+)
+if (!window.web3) {
+  ReactDOM.render(
+    <MetaMaskWarning />,
+    document.getElementById('root')  
+  )
+} else {
+  ReactDOM.render(
+    <Provider>
+      <App />
+    </Provider>, 
+    document.getElementById('root')
+  )
+}
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

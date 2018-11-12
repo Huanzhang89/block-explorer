@@ -44,9 +44,6 @@ class App extends Component {
   }
 
   render() {
-    if (!window.web3) {
-      return 'Please enable Metamask'
-    }
     return (
       <AragonApp publicUrl="/aragon-ui-assets/">
         <div className="App">
