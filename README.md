@@ -1,11 +1,11 @@
 Please first run 
 
-## npm install
+ `npm install`
 
 then run
 
-## npm start
+`npm start`
 
 To deploy please use
 
-## npm run deploy
+`npm run deploy`
