@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter } from 'react-router-dom'
+
 import App from './App';
 import getWeb3 from './api/web3'
 import Error from './components/Error'
 import * as serviceWorker from './serviceWorker';
-
+import Routes from './routes'
 window.addEventListener('load', async () => {
     //initiate web3 on window load
     getWeb3()
@@ -18,7 +19,9 @@ if (!window.web3) {
   )
 } else {
   ReactDOM.render(
-    <App />,
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>,
     document.getElementById('root')
   )
 }

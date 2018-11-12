@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { AragonApp } from '@aragon/ui'
+import { Route } from 'react-router-dom'
 
 import GetLatestBlocks from './components/GetLatestBlocks'
 import BlockList from './components/BlockList'
+import Transactions from './components/Transactions'
 
 
 import './App.css';
 
 class App extends Component {
-
   render() {
     return (
       <AragonApp publicUrl="/aragon-ui-assets/">
@@ -18,7 +19,16 @@ class App extends Component {
           </header>
           <GetLatestBlocks numOfBlocks={10}>
             {({ latestBlocks }) => (
-              <BlockList blocks={latestBlocks} />        
+              <>
+                <BlockList blocks={latestBlocks} />
+                <Route
+                  path="/:blockNumber"
+                  render={() => (
+                    <Transactions data={latestBlocks} />
+                  )}
+                />
+                
+              </>
             )}
           </GetLatestBlocks>
         </div>

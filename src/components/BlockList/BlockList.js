@@ -10,7 +10,6 @@ const BlockList = ({blocks}) => {
     return <Loader loaded={false}/>
   }
   return (
-    <>
       <Table
         header={
           <TableRow>
@@ -36,8 +35,6 @@ const BlockList = ({blocks}) => {
           <Block key={block.number} data={block} />
         ))}
       </Table>
-      
-    </>
   )
 }
   
