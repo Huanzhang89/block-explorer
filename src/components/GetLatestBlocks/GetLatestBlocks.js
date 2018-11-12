@@ -3,14 +3,16 @@ import getWeb3 from '../../api/web3'
 export default class GetLatestBlocks extends Component {
 
   state = {
-    latestBlocks: []
+    latestBlocks: [],
+    web3: undefined
   }
   async componentDidMount() {
     const web3 = await getWeb3()
     web3.eth.getBlockNumber().then( (res) => {
       this.getLatestBlocks(res, this.props.numOfBlocks, web3).then(results => {
         this.setState({
-          latestBlocks: results
+          latestBlocks: results,
+          web3: web3
         })
       }).catch( err => {
         console.log(err)
@@ -39,7 +41,8 @@ export default class GetLatestBlocks extends Component {
 
   render() {
     return this.props.children({
-      latestBlocks: this.state.latestBlocks
+      latestBlocks: this.state.latestBlocks,
+      web3: this.state.web3
     })
   }
 }

@@ -7,7 +7,7 @@ import Transaction from '../Transaction'
 import styled from 'styled-components'
 
 import Modal from '../Modal'
-const Transactions = ({data , match, history}) => {
+const Transactions = ({data , match, history, web3}) => {
     const blockData = data.filter(block => block.number === Number(match.params.blockNumber))[0]
     const validTx = blockData && blockData.transactions.filter(transaction => transaction.value !== '0')
     if (!data.length > 0) {
@@ -34,14 +34,14 @@ const Transactions = ({data , match, history}) => {
               <Text>To</Text>
             </TableCell>
             <TableCell>
-              <Text>Value in Eth</Text>
+              <Text>Value in Ether</Text>
             </TableCell>
             <TableCell>
               <Text>Gas used</Text>
             </TableCell>
           </StyledTableRow>
           {validTx.map(tx => (
-            <Transaction key={tx.hash} data={tx} />
+            <Transaction key={tx.hash} data={tx} web3={web3} />
           ))}
         </Table>
       </Modal>

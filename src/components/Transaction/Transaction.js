@@ -1,7 +1,7 @@
 import React from 'react'
 import { TableRow, TableCell, Text } from '@aragon/ui'
 
-const Transaction = ({data}) => (
+const Transaction = ({data, web3}) => (
   <TableRow>
     <TableCell>
       <Text>{data.from}</Text>
@@ -10,7 +10,7 @@ const Transaction = ({data}) => (
       <Text>{data.to}</Text>
     </TableCell>
     <TableCell>
-      <Text>{data.value}</Text>
+      <Text>{web3.utils.fromWei(data.value, 'ether')}</Text>
     </TableCell>
     <TableCell>
       <Text>{data.gas}</Text>

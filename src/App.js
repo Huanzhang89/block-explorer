@@ -18,13 +18,13 @@ class App extends Component {
             <h2>Block Explorer</h2>
           </header>
           <GetLatestBlocks numOfBlocks={10}>
-            {({ latestBlocks }) => (
+            {({ latestBlocks, web3 }) => (
               <>
                 <BlockList blocks={latestBlocks} />
                 <Route
                   path="/:blockNumber"
                   render={() => (
-                    <Transactions data={latestBlocks} />
+                    <Transactions web3={web3} data={latestBlocks} />
                   )}
                 />
                 
