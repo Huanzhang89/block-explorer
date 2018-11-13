@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
 
-import App from './App';
 import getWeb3 from './api/web3'
 import Error from './components/Error'
 import * as serviceWorker from './serviceWorker';

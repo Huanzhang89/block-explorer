@@ -16,8 +16,8 @@ const StyledModal = styled(Modal)`
 `
 const ModalContent = styled('div')`
   background: #F7FBFD;
-  height: 80%;
-  width: 80%;
+  height: 90%;
+  width: 90%;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -35,7 +35,7 @@ const ModalMask = styled('div')`
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(211, 211, 211, 0.9);
   justify-content: flex-end;
   align-items: flex-start;
   z-index: 6;

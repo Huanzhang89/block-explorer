@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
 import { Table, TableHeader, TableRow, TableCell, Text } from '@aragon/ui'
 import Loader from 'react-loader'
-import Transaction from '../Transaction'
-
 import styled from 'styled-components'
 
+import Transaction from '../Transaction'
 import Modal from '../Modal'
+import Error from '../Error'
+
 const Transactions = ({data , match, history, web3}) => {
     const blockData = data.filter(block => block.number === Number(match.params.blockNumber))[0]
     const validTx = blockData && blockData.transactions.filter(transaction => transaction.value !== '0')
@@ -40,9 +41,12 @@ const Transactions = ({data , match, history, web3}) => {
               <Text>Gas used</Text>
             </TableCell>
           </StyledTableRow>
-          {validTx.map(tx => (
-            <Transaction key={tx.hash} data={tx} web3={web3} />
-          ))}
+          {validTx.length > 0 ? 
+            validTx.map(tx => (
+              <Transaction key={tx.hash} data={tx} web3={web3} />
+            )):
+            <Error msg="Oops... none of the transactions are sending any ether!" />
+          } 
         </Table>
       </Modal>
         

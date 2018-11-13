@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import getWeb3 from '../../api/web3'
 export default class GetLatestBlocks extends Component {
 

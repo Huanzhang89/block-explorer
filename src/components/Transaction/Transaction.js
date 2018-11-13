@@ -4,10 +4,14 @@ import { TableRow, TableCell, Text } from '@aragon/ui'
 const Transaction = ({data, web3}) => (
   <TableRow>
     <TableCell>
-      <Text>{data.from}</Text>
+      <BlankLink href={`${etherscanRoot}${data.from}`}>
+        <Text>{data.from}</Text>
+      </BlankLink>
     </TableCell>
     <TableCell>
-      <Text>{data.to}</Text>
+      <BlankLink href={`${etherscanRoot}${data.to}`}>
+        <Text>{data.to}</Text>
+      </BlankLink>
     </TableCell>
     <TableCell>
       <Text>{web3.utils.fromWei(data.value, 'ether')}</Text>
@@ -16,6 +20,12 @@ const Transaction = ({data, web3}) => (
       <Text>{data.gas}</Text>
     </TableCell>
   </TableRow>
+)
+const etherscanRoot = 'https://etherscan.io/address/'
+const BlankLink = ({href, children}) => (
+  <a href={href} rel="noopener noreferrer" target="_blank">
+    {children}
+  </a>
 )
 
 export default Transaction

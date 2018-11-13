@@ -1,24 +1,27 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import styled from 'styled-components'
 import { TableRow, TableCell, Text } from '@aragon/ui'
 
-const Block = ({data}) => (
-  <TableRow>
-    <TableCell>
-      <Text>{data.number}</Text>
-    </TableCell>
-    <TableCell>
-      <Text>{data.hash}</Text>
-    </TableCell>
-    <TableCell>
-      <Text>{data.difficulty}</Text>
-    </TableCell>
-    <TableCell>
-      <Link to={`${data.number}`}>
-        <Text>{data.transactions.length}</Text>
-      </Link>
-    </TableCell>
-  </TableRow>
+const Block = ({data, history}) => (
+  <StyledTableRow onClick={() => history.push(`/${data.number}`)} >
+      <TableCell>
+        <Text>{data.number}</Text>
+      </TableCell>
+      <TableCell>
+        <Text>{data.hash}</Text>
+      </TableCell>
+      <TableCell>
+        <Text>{data.difficulty}</Text>
+      </TableCell>
+      <TableCell>
+          <Text>{data.transactions.length}</Text>
+      </TableCell>
+  </StyledTableRow>
 )
 
-export default Block
+const StyledTableRow = styled(TableRow)`
+  cursor: pointer;
+`
+
+export default withRouter(Block)
